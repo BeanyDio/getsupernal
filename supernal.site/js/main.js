@@ -162,8 +162,6 @@ function getOS() {
     os = 'Linux';
   } else if (/CrOS/.test(userAgent)) {
     os = 'Chrome OS';
-  } else {
-    os = 'Other';
   }
 
   return os;
@@ -174,7 +172,8 @@ const userOS = getOS();
 const downloadButtonsToDisable = document.querySelectorAll(
   '.download-btn,' +
   ' .modal-download,' +
-  ' .card-footer .btn-primary' // Добавляем кнопку в футере карточек
+  ' .card-footer .btn-primary,' + // Добавляем кнопку в футере карточек
+  ' .cta-buttons .primary-button' // Добавляем кнопку в секции CTA
 );
 
 if (userOS !== 'Windows') {
@@ -236,6 +235,12 @@ if (userOS !== 'Windows') {
         // Также можно попытаться удалить конкретный listener, если мы его добавляли ранее
         // Например: button.removeEventListener('click', openModal);
         // Но переопределение onclick часто проще, если нет сложных цепочек listeners
+      } else { // Если кнопка НЕ отключена, убедимся, что стандартное поведение работает
+          // Здесь может потребоваться восстановить оригинальный обработчик, если он был переопределен
+          // или убедиться, что он корректно добавлен в другом месте кода.
+          // В данном случае, основной обработчик открытия модального окна уже есть в начале файла
+          // и он применяется ко всем downloadButtons. Этого должно быть достаточно, если
+          // кнопка не имеет класса 'download-disabled'.
       }
     });
 
@@ -246,5 +251,15 @@ if (userOS !== 'Windows') {
           e.stopPropagation();
           console.log(`Download not supported on ${userOS}`);
       };
+    }
+
+    // Добавляем обработчик для кнопки CTA Download, если она отключена
+    const ctaDownloadButton = document.querySelector('.cta-buttons .primary-button');
+    if (ctaDownloadButton && ctaDownloadButton.classList.contains('download-disabled')) {
+        ctaDownloadButton.onclick = function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log(`Download not supported on ${userOS}`);
+        };
     }
 }
