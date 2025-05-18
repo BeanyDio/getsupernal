@@ -108,3 +108,37 @@ document.addEventListener('keydown', function(e) {
          e.preventDefault();
     }
 });
+
+// Get the necessary elements
+const menuButton = document.querySelector('.menu-button');
+const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+const closeMenuButton = document.querySelector('.close-menu');
+
+// Function to open the mobile menu
+function openMobileMenu() {
+  mobileMenuOverlay.classList.add('visible');
+}
+
+// Function to close the mobile menu
+function closeMobileMenu() {
+  mobileMenuOverlay.classList.remove('visible');
+}
+
+// Add event listeners
+if (menuButton) {
+  menuButton.addEventListener('click', openMobileMenu);
+}
+
+if (closeMenuButton) {
+  closeMenuButton.addEventListener('click', closeMobileMenu);
+}
+
+// Close menu when clicking outside of the menu content
+if (mobileMenuOverlay) {
+  mobileMenuOverlay.addEventListener('click', (event) => {
+    // Check if the click was directly on the overlay, not the menu content
+    if (event.target === mobileMenuOverlay) {
+      closeMobileMenu();
+    }
+  });
+}

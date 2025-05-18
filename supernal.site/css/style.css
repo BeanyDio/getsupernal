@@ -551,6 +551,7 @@
     visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 0 1rem;
   }
 
   .modal-overlay.visible {
@@ -561,9 +562,9 @@
   .modal {
     position: relative;
     background-color: #0F0F13;
-    padding: 30px;
+    padding: 20px;
     border-radius: 10px;
-    width: 90%;
+    width: 100%;
     max-width: 450px;
     z-index: 1001;
     color: #ffffff;
@@ -582,11 +583,11 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 0;
-    padding-right: 30px;
+    padding-right: 20px;
   }
 
   .modal-title {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     background: linear-gradient(to right, #e040fb, #a044ff);
     -webkit-background-clip: text;
@@ -597,12 +598,12 @@
   .modal-close {
     background: none;
     border: none;
-    font-size: 28px;
+    font-size: 20px;
     color: #bdb8d7;
     cursor: pointer;
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 10px;
+    right: 10px;
     transition: transform 0.3s ease, color 0.3s ease;
   }
 
@@ -614,7 +615,7 @@
   .modal-body {
     margin-top: 0;
     padding-top: 0;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
   }
 
   .modal-body p:first-child {
@@ -623,10 +624,11 @@
 
   .requirement-item {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     margin-bottom: 15px;
     background-color: #1a0732;
-    padding: 15px;
+    padding: 10px;
     border-radius: 8px;
     border: 1.5px solid rgba(160, 68, 255, 0.3);
     transition: border-color 0.3s ease, transform 0.3s ease;
@@ -638,7 +640,8 @@
   }
 
   .requirement-icon {
-    margin-right: 15px;
+    margin-right: 0;
+    margin-bottom: 10px;
     width: 24px;
     height: 24px;
     border-radius: 50%;
@@ -651,13 +654,12 @@
   }
 
   .requirement-text {
-    flex: 1;
     padding-top: 0;
     margin-top: 0;
   }
 
   .requirement-text h4 {
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 700;
     margin-top: 0;
     margin-bottom: 5px;
@@ -665,9 +667,9 @@
   }
 
   .requirement-text p {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     color: #bdb8d7;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
 
   .download-link {
@@ -676,10 +678,10 @@
     gap: 6px;
     background: linear-gradient(135deg, #a044ff, #e040fb);
     color: #fff;
-    padding: 5px 10px;
+    padding: 4px 8px;
     border-radius: 5px;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
   }
@@ -695,9 +697,18 @@
   }
 
   .modal-footer {
+    position: static;
     display: flex;
-    justify-content: flex-end;
-    gap: 15px;
+    justify-content: center;
+    width: 100%;
+    border: none !important;
+    margin-left: 0;
+    margin-top: 20px;
+    margin-bottom: 0;
+  }
+
+  .modal-footer .btn {
+    margin: 0 5px;
   }
 
   .btn-secondary {
@@ -795,11 +806,11 @@
 
   .notification-modal {
     position: absolute;
-    top: 30px; 
+    top: 20px; 
     left: 50%;
     transform: translateX(-50%) scale(0.9);
     background-color: #1a1a1f; 
-    padding: 20px 30px;
+    padding: 15px 20px;
     border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     color: #ffffff;
@@ -815,11 +826,11 @@
   .notification-content {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
   }
 
   .notification-icon {
-    font-size: 24px;
+    font-size: 20px;
     color: #4CAF50; 
   }
 
@@ -828,20 +839,20 @@
   }
 
   .notification-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
     margin-bottom: 4px;
   }
 
   .notification-message {
-    font-size: 14px;
+    font-size: 12px;
     color: #cccccc;
   }
 
   .notification-close {
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 20px;
     color: #bdbdbd; 
     cursor: pointer;
     margin-left: 15px; 
@@ -939,12 +950,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Затемнение */
-    z-index: 1000; /* Поверх всего */
+    background-color: rgba(0, 0, 0, 0.95); /* Очень темный фон */
+    z-index: 1000;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    visibility: hidden; /* Скрыто по умолчанию */
+    justify-content: center; /* Центрируем содержимое по горизонтали */
+    align-items: center; /* Центрируем содержимое по вертикали */
+    visibility: hidden;
     opacity: 0;
     transition: opacity 0.3s ease, visibility 0.3s ease;
   }
@@ -955,40 +966,76 @@
   }
 
   .mobile-menu-content {
-    background-color: #1a0732; /* Фон меню */
-    padding: 30px;
-    border-radius: 10px;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
-    position: relative;
+    gap: 15px;
+    width: 100%;
   }
 
   .mobile-menu-content .nav-link {
     color: #cfc6f7;
     text-decoration: none;
-    font-size: 18px; /* Увеличиваю размер текста в меню */
+    font-size: 18px;
     font-weight: 500;
-    transition: color 0.2s ease;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .mobile-menu-content .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 8px;
+    padding: 2px;
+    background: linear-gradient(135deg, #7a00cc, #b300d1);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: exclude;
+    mask-composite: exclude;
+    z-index: -1;
   }
 
   .mobile-menu-content .nav-link:hover {
     color: #ffffff;
+    background-color: rgba(160, 68, 255, 0.1);
   }
 
   .close-menu {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 20px;
+    right: 20px;
     background: none;
     border: none;
-    font-size: 24px;
-    color: #bdb8d7;
+    font-size: 30px;
+    color: #ffffff;
     cursor: pointer;
+    z-index: 1001;
+    transition: transform 0.3s ease, color 0.3s ease;
   }
 
-  @media (max-width: 768px) { /* Медиа-запрос для телефонов */
+  .close-menu:hover {
+    transform: rotate(90deg);
+    color: #ff4081;
+  }
+
+  @media (max-width: 768px) {
     .top-nav {
       display: none; /* Скрываю обычные ссылки */
     }
@@ -1010,4 +1057,137 @@
       border-color: #ffffff;
       color: #ffffff;
     }
+
+    /* Адаптация hero-блока */
+    .cont {
+      padding: 0 1rem; /* Уменьшаю горизонтальные отступы */
+      min-height: auto; /* Убираю минимальную высоту */
+      margin-top: 80px; /* Добавляю отступ сверху, чтобы избежать перекрытия топ-баром */
+    }
+
+    .hero-grid {
+      grid-template-columns: 1fr; /* Один столбец */
+      gap: 2rem; /* Уменьшаю расстояние между элементами */
+    }
+
+    .hero-cont {
+      text-align: center; /* Центрирую текст */
+    }
+
+    .hero-title {
+      font-size: 36px; /* Уменьшаю размер заголовка */
+      margin-bottom: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 16px; /* Уменьшаю размер подзаголовка */
+      margin-bottom: 20px;
+    }
+
+    .hero-btns {
+      justify-content: center; /* Центрирую кнопки */
+      gap: 15px; /* Уменьшаю расстояние между кнопками */
+    }
+
+    .hero-main-btn {
+      padding: 10px 18px; /* Уменьшаю отступы кнопок */
+      font-size: 14px;
+    }
+
+    .hero-visual {
+      margin-bottom: 2rem; /* Отступ снизу */
+    }
+
+    .hero-image {
+      max-width: 90%; /* Уменьшаю максимальную ширину изображения */
+      margin: 0 auto; /* Центрирую изображение */
+    }
+
+    /* Адаптация секции карточек */
+    .container {
+      padding: 0 1rem 40px 1rem; /* Уменьшаю отступы */
+    }
+
+    .cards-container {
+      flex-direction: column; /* Размещаю карточки по вертикали */
+      align-items: center; /* Центрирую карточки */
+      gap: 20px; /* Уменьшаю расстояние между карточками */
+    }
+
+    .card {
+      width: 90%; /* Уменьшаю ширину карточек */
+      padding: 20px; /* Уменьшаю отступы в карточках */
+    }
+
+    .card-content {
+      align-items: center; /* Центрирую содержимое карточки */
+      text-align: center;
+    }
+
+    .card-footer {
+      position: static; /* Отключаю абсолютное позиционирование */
+      transform: none; /* Убираю трансформацию */
+      width: 100%; /* Ширина на всю ширину карточки */
+      margin-top: 20px; /* Отступ сверху */
+    }
+
+    .btn {
+      width: 100%; /* Кнопки на всю ширину */
+      justify-content: center; /* Центрирую содержимое кнопок */
+    }
+
+    /* Адаптация секции CTA */
+    .cta-section {
+      flex-direction: column; /* Размещаю элементы по вертикали */
+      padding: 40px 20px; /* Уменьшаю отступы */
+      margin: 40px auto; /* Уменьшаю отступы */
+      max-width: 90%; /* Уменьшаю максимальную ширину */
+    }
+
+    .cta-content h2 {
+      font-size: 32px; /* Уменьшаю размер заголовка */
+    }
+
+    .cta-content p {
+      font-size: 14px; /* Уменьшаю размер текста */
+    }
+
+    .cta-buttons {
+      flex-direction: column; /* Кнопки по вертикали */
+      gap: 10px; /* Уменьшаю расстояние между кнопками */
+    }
+
+    .cta-buttons .button {
+      width: 100%; /* Кнопки на всю ширину */
+    }
+
+    .modal {
+      width: 90%;
+    }
+
+    .modal-footer {
+      position: static;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      border: none !important;
+      margin-left: 0;
+      margin-top: 20px;
+      margin-bottom: 0;
+    }
+
+    .modal-footer .btn {
+      margin: 0 5px;
+    }
+
+    .notification-modal {
+      width: 90%;
+    }
+  }
+
+  /* Адаптация кнопок в карточках */
+  .card-footer .btn {
+    padding: 10px 10px; /* Уменьшаю горизонтальный отступ еще немного */
+    font-size: 14px;
+    box-sizing: border-box; /* Включаю box-sizing: border-box */
   }
