@@ -1191,3 +1191,18 @@
     font-size: 14px;
     box-sizing: border-box; /* Включаю box-sizing: border-box */
   }
+
+  .download-disabled {
+    opacity: 0.5; /* Сделаем кнопки полупрозрачными */
+    pointer-events: none; /* Отключим события мыши */
+    cursor: not-allowed !important; /* Изменим курсор */
+    /* Возможно, потребуется скорректировать цвета или рамку для неактивного состояния */
+    background: #cccccc !important; /* Серый фон */
+    color: #555555 !important; /* Темно-серый текст */
+    border-color: #cccccc !important; /* Серая рамка */
+    box-shadow: none !important; /* Уберем тени */
+  }
+
+  .download-disabled::before {
+    display: none !important; /* Скрываем градиентную рамку */
+  }

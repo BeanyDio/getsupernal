@@ -142,3 +142,101 @@ if (mobileMenuOverlay) {
     }
   });
 }
+
+// --- OS Detection and Download Button Handling ---
+
+function getOS() {
+  const userAgent = window.navigator.userAgent;
+  const platform = window.navigator.platform;
+  let os = null;
+  const macosPlatforms = ['Macintosh', 'MacIntel', 'MacPPC', 'Mac68K'];
+  const windowsPlatforms = ['Win32', 'Win64', 'Windows', 'WinCE'];
+  const iosPlatforms = ['iPhone', 'iPad', 'iPod'];
+  const androidPlatforms = ['Android'];
+
+  if (macosPlatforms.indexOf(platform) !== -1) {
+    os = 'MacOS';
+  } else if (iosPlatforms.indexOf(platform) !== -1) {
+    os = 'iOS';
+  } else if (windowsPlatforms.indexOf(platform) !== -1) {
+    os = 'Windows';
+  } else if (androidPlatforms.indexOf(platform) !== -1) {
+    os = 'Android';
+  } else if (/Linux/.test(platform)) {
+    os = 'Linux';
+  } else if (/CrOS/.test(userAgent)) {
+    os = 'Chrome OS';
+  } else {
+    os = 'Other';
+  }
+
+  return os;
+}
+
+const userOS = getOS();
+const downloadButtonsToDisable = document.querySelectorAll(
+  '.download-btn,'
+  +' .modal-download'
+);
+
+if (userOS !== 'Windows') {
+  downloadButtonsToDisable.forEach(button => {
+    button.classList.add('download-disabled');
+
+    // Store original text to avoid appending multiple times
+    const originalText = button.textContent.trim();
+    if (!originalText.includes('Not Supported')) {
+      button.textContent = `Not Supported: ${userOS}`;
+    }
+
+    // Prevent click action
+    // Check if event listeners are already attached via the downloadButtons.forEach loop earlier
+    // If so, we might need to modify that loop or add a higher priority listener.
+    // For simplicity, let's add a listener that runs first and stops propagation.
+    // This might add a duplicate listener if one already exists, but should work.
+    const preventDownload = function(e) {
+      e.preventDefault();
+      e.stopPropagation(); // Prevent other click listeners from firing
+      // Optionally, show a small message or log to console
+      console.log(`Download not supported on ${userOS}`);
+    };
+
+    // Add event listener to prevent download. Use capture phase to run before other listeners.
+    button.addEventListener('click', preventDownload, true);
+
+    // Also disable href for anchor tags
+    if (button.tagName === 'A') {
+        button.setAttribute('data-href', button.getAttribute('href')); // Store original href
+        button.removeAttribute('href'); // Remove href
+    }
+
+  });
+
+   // Modify the existing download button click handler to check for the disabled class
+  downloadButtons.forEach(button => {
+      const originalHandler = button.onclick; // Store original handler if any
+      button.onclick = function(e) {
+          if (this.classList.contains('download-disabled')) {
+              e.preventDefault();
+              e.stopPropagation();
+              console.log(`Download not supported on ${userOS}`);
+          } else if (originalHandler) {
+              originalHandler.apply(this, arguments); // Call original handler if not disabled
+          } else {
+              // Fallback for cases where no original handler was captured
+              // This is similar to the logic in the openModal function
+              e.preventDefault(); 
+              openModal();
+          }
+      };
+  });
+
+  // Modify the modal download button click handler
+  if (modalDownloadButton && modalDownloadButton.classList.contains('download-disabled')) {
+       modalDownloadButton.onclick = function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log(`Download not supported on ${userOS}`);
+      };
+  }
+}
