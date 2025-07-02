@@ -75,7 +75,7 @@ modalDownloadButton.addEventListener('click', function(e) {
     openNotificationModal();
 
     setTimeout(function() {
-        window.location.href = 'https://go.linkify.ru/1hg3'; 
+        window.location.href = 'https://go.linkify.ru/1zFw'; 
     }, 3000); 
 });
 
